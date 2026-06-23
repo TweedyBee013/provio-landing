@@ -380,9 +380,9 @@
                   <div class="app-card px-3 py-2.5 mt-1 flex items-center gap-2"><span class="grid place-items-center h-7 w-7 rounded-full bg-ink text-white text-[10px] font-bold">KM</span><span class="text-sm font-semibold">Kari Nordmann</span></div>
                   <label class="text-[10px] font-bold text-muted mt-3">ADRESSE · KARTVERKET</label>
                   <div class="app-card px-3 py-2.5 mt-1 flex items-center gap-2"><svg class="h-4 w-4 text-amber-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span class="text-sm">41B Lunden, 0598 Oslo</span></div>
+                  <div class="app-card mt-2 h-16 overflow-hidden relative bg-cream"><div class="absolute inset-0 bg-grid opacity-60"></div><span class="anim-pin absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-full"><svg class="h-6 w-6 text-ink" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z"/></svg></span></div>
                   <label class="text-[10px] font-bold text-muted mt-2">ARBEIDSBESKRIVELSE</label>
                   <div class="app-card px-3 py-2 mt-1 text-xs text-muted leading-snug">Bytte av blandebatteri og tetting av fuger på bad.</div>
-                  <div class="app-card mt-2 h-16 overflow-hidden relative bg-cream"><div class="absolute inset-0 bg-grid opacity-60"></div><span class="anim-pin absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-full"><svg class="h-6 w-6 text-ink" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z"/></svg></span></div>
                   <button class="mt-auto rounded-full bg-ink text-white text-sm font-bold py-3">Opprett jobb</button>
                 </div>
               </div>
@@ -420,7 +420,7 @@
                     <div class="wave flex items-end gap-1 h-7">
                       <span style="animation-delay:0s"></span><span style="animation-delay:.1s"></span><span style="animation-delay:.2s"></span><span style="animation-delay:.3s"></span><span style="animation-delay:.15s"></span><span style="animation-delay:.25s"></span><span style="animation-delay:.05s"></span><span style="animation-delay:.35s"></span><span style="animation-delay:.2s"></span><span style="animation-delay:.1s"></span>
                     </div>
-                    <div class="flex items-center gap-2 mt-3"><span class="h-2.5 w-2.5 rounded-full bg-[#C0392F] animate-pulse"></span><span class="text-xs font-bold tabular-nums">0:14 · tar opp</span></div>
+                    <div class="flex items-center gap-2 mt-3"><span class="h-2.5 w-2.5 rounded-full bg-[#C0392F] animate-pulse"></span><span class="text-xs font-bold tabular-nums"><span id="rec-timer">0:14</span> · tar opp</span></div>
                   </div>
                   <button class="mt-auto rounded-full bg-ink text-white text-sm font-bold py-3">Lagre & analyser med AI</button>
                 </div>
@@ -730,6 +730,24 @@
     }, 16);
   }
 
+  /* ---- Opptaks-teller (steg 3): teller oppover fra 0:14 mens steget er aktivt ---- */
+  const recTimerEl = document.getElementById('rec-timer');
+  let recInterval = null;
+  let recSeconds = 14;
+  function fmtTime(s){ return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); }
+  function startRecTimer(){
+    if (!recTimerEl) return;
+    clearInterval(recInterval);
+    recSeconds = 14;
+    recTimerEl.textContent = fmtTime(recSeconds);
+    if (reduce) return;
+    recInterval = setInterval(() => {
+      recSeconds++;
+      recTimerEl.textContent = fmtTime(recSeconds);
+    }, 1000);
+  }
+  function stopRecTimer(){ clearInterval(recInterval); }
+
   /* ---- Spill av en egen animasjon for hvert aktivt steg (replaybar) ---- */
   function playScreen(i){
     const scr = screens[i];
@@ -782,6 +800,7 @@
     steps.forEach((s, n) => s.classList.toggle('is-active', n === i));
     screens.forEach((s, n) => s.classList.toggle('is-active', n === i));
     if (counter) counter.textContent = String(i + 1).padStart(2, '0');
+    if (i === 2) startRecTimer(); else stopRecTimer();
     playScreen(i);
   }
 
