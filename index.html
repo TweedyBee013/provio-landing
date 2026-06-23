@@ -437,7 +437,14 @@
                   <div class="app-card px-3 py-2.5 mt-1 flex items-center gap-2"><span class="grid place-items-center h-7 w-7 rounded-full bg-ink text-white text-[10px] font-bold">KM</span><span class="text-sm font-semibold">Kari Nordmann</span></div>
                   <label class="text-[10px] font-bold text-muted mt-3">ADRESSE · KARTVERKET</label>
                   <div class="app-card px-3 py-2.5 mt-1 flex items-center gap-2"><svg class="h-4 w-4 text-amber-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span class="text-sm">41B Lunden, 0598 Oslo</span></div>
-                  <div class="app-card mt-2 h-16 overflow-hidden relative bg-cream"><div class="absolute inset-0 bg-grid opacity-60"></div><span class="anim-pin absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-full"><svg class="h-6 w-6 text-ink" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z"/></svg></span></div>
+                  <div class="app-card mt-2 h-[74px] overflow-hidden relative" style="background:#ECEAE4">
+                    <div class="absolute inset-0" style="opacity:.6;background-image:linear-gradient(rgba(8,10,12,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(8,10,12,.045) 1px,transparent 1px);background-size:18px 18px"></div>
+                    <svg class="absolute inset-0 w-full h-full" preserveAspectRatio="none"><line x1="0%" y1="42%" x2="100%" y2="42%" stroke="rgba(8,10,12,.14)" stroke-width="4"/><line x1="0%" y1="74%" x2="100%" y2="74%" stroke="rgba(8,10,12,.10)" stroke-width="3"/><line x1="34%" y1="0%" x2="34%" y2="100%" stroke="rgba(8,10,12,.10)" stroke-width="3"/><line x1="70%" y1="0%" x2="70%" y2="100%" stroke="rgba(8,10,12,.07)" stroke-width="2"/></svg>
+                    <span class="absolute" style="top:18%;left:14%;width:12%;height:22%;background:rgba(8,10,12,.07);border:1px solid rgba(8,10,12,.06);border-radius:2px"></span>
+                    <span class="absolute" style="top:50%;left:76%;width:13%;height:30%;background:rgba(8,10,12,.07);border:1px solid rgba(8,10,12,.06);border-radius:2px"></span>
+                    <span class="absolute" style="top:12%;left:56%;width:10%;height:18%;background:rgba(8,10,12,.06);border:1px solid rgba(8,10,12,.05);border-radius:2px"></span>
+                    <span class="anim-pin absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-full"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" style="filter:drop-shadow(0 2px 3px rgba(8,10,12,.25))"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#FFD358"/><circle cx="12" cy="9" r="2.5" fill="#080A0C"/></svg></span>
+                  </div>
                   <label class="text-[10px] font-bold text-muted mt-2">ARBEIDSBESKRIVELSE</label>
                   <div class="app-card px-3 py-2 mt-1 text-xs text-muted leading-snug">Bytte av blandebatteri og tetting av fuger på bad.</div>
                   <button class="mt-auto rounded-full bg-ink text-white text-sm font-bold py-3">Opprett jobb</button>
@@ -629,14 +636,12 @@
           <span class="lmap-bldg" style="top:10%;left:80%;width:11%;height:8%;transition-delay:.75s"></span>
           <div class="lmap-pinwrap">
             <span class="lmap-marker">
-              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" style="filter:drop-shadow(0 4px 6px rgba(8,10,12,.25))"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#34D399"/><circle cx="12" cy="9" r="2.5" fill="#fff"/></svg>
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" style="filter:drop-shadow(0 4px 6px rgba(8,10,12,.25))"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#FFD358"/><circle cx="12" cy="9" r="2.5" fill="#080A0C"/></svg>
             </span>
             <div class="lmap-label"><b>Oslo, Norge</b><span>59.9139° N, 10.7522° E</span></div>
           </div>
           <div class="lmap-veil"></div>
         </div>
-        <!-- LIVE-badge -->
-        <div class="lmap-badge absolute top-6 right-6"><span class="lmap-dot"></span><span class="lmap-live">Live</span></div>
         <span class="bento-icon relative grid place-items-center h-12 w-12 rounded-2xl bg-amber text-ink"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 20l-5.5 2V6L9 4m0 16l6-2m-6 2V4m6 14l5.5 2V4L15 6m0 12V6m-6-2l6 2"/></svg></span>
         <div class="relative mt-6 max-w-sm">
           <h3 class="font-display text-2xl font-extrabold">Kart over alle jobber</h3>
@@ -658,22 +663,6 @@
         <p class="text-muted mt-2 leading-relaxed">Hent firmaopplysninger automatisk fra Brønnøysundregistrene med ett organisasjonsnummer.</p>
       </div>
 
-      <!-- Personvern (bred) -->
-      <div class="reveal bento md:col-span-2 app-card p-7 flex flex-col sm:flex-row gap-6 items-start">
-        <span class="bento-icon grid place-items-center h-12 w-12 rounded-2xl bg-cream text-ink shrink-0"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
-        <div>
-          <h3 class="font-display text-xl font-bold">Lokalt og privat</h3>
-          <p class="text-muted mt-2 leading-relaxed">Dataene dine lagres på enheten, ikke på en server. Bildene dine sendes <span class="font-semibold text-ink">aldri</span> til AI — kun lyd- og tekstnotater brukes til å lage rapporten.</p>
-        </div>
-      </div>
-
-      <!-- Gratis å starte -->
-      <div class="reveal bento bento-dark app-card p-7 bg-ink text-white relative overflow-hidden">
-        <div class="absolute -right-10 -bottom-10 h-40 w-40 glow-amber blur-2xl opacity-40"></div>
-        <span class="bento-icon relative grid place-items-center h-12 w-12 rounded-2xl bg-amber text-ink mb-5"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12v10H4V12M2 7h20v5H2zM12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg></span>
-        <h3 class="font-display text-xl font-bold relative">Gratis å starte</h3>
-        <p class="text-white/70 mt-2 leading-relaxed relative">5 rapporter gratis. Trenger du mer, oppgraderer du til Solo — du betaler per rapport, ikke for hele kontoret.</p>
-      </div>
     </div>
   </div>
 </section>
