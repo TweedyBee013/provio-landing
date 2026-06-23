@@ -125,6 +125,63 @@
   .marquee-track{ animation:marquee 28s linear infinite; }
   @keyframes marquee{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
 
+  /* ---------- Bento-kort hover (inspirert av BentoGrid) ---------- */
+  .bento{ position:relative; overflow:hidden; transition:transform .3s ease, box-shadow .3s ease; will-change:transform; }
+  .bento:hover{ transform:translateY(-4px); box-shadow:0 16px 34px -16px rgba(8,10,12,.20); }
+  /* hold innhold over dekor-lagene */
+  .bento h3, .bento p, .bento .bento-icon, .bento .bento-cta{ position:relative; z-index:1; }
+  /* prikkraster som toner inn */
+  .bento::before{ content:""; position:absolute; inset:0; z-index:0; pointer-events:none; border-radius:inherit;
+    opacity:0; transition:opacity .3s ease;
+    background-image:radial-gradient(circle at center, rgba(8,10,12,.05) 1px, transparent 1px);
+    background-size:6px 6px; }
+  .bento:hover::before{ opacity:1; }
+  /* gradient-kantlinje som toner inn */
+  .bento::after{ content:""; position:absolute; inset:0; z-index:0; pointer-events:none; border-radius:inherit; padding:1px;
+    background:linear-gradient(135deg, transparent 0%, rgba(255,211,88,.55) 50%, transparent 100%);
+    -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    opacity:0; transition:opacity .3s ease; }
+  .bento:hover::after{ opacity:1; }
+  /* mørk variant: lyse prikker */
+  .bento-dark::before{ background-image:radial-gradient(circle at center, rgba(255,255,255,.07) 1px, transparent 1px); }
+  /* ikon-zoom på hover */
+  .bento-icon{ transition:transform .3s ease; }
+  .bento:hover .bento-icon{ transform:scale(1.06); }
+  /* CTA som toner inn på hover */
+  .bento-cta{ opacity:0; transform:translateX(-4px); transition:opacity .3s ease, transform .3s ease; }
+  .bento:hover .bento-cta{ opacity:1; transform:none; }
+
+  /* ---------- Lokasjonskart (lyst, fyller hele kortet, scroll-drevet, ingen parallax) ---------- */
+  .lmap{ position:absolute; inset:0; z-index:0; overflow:hidden; border-radius:inherit; }
+  .lmap-mapbg{ position:absolute; inset:0; background:#ECEAE4; }
+  .lmap-grid{ position:absolute; inset:0; opacity:.6;
+    background-image:linear-gradient(rgba(8,10,12,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(8,10,12,.045) 1px, transparent 1px);
+    background-size:28px 28px; }
+  .lmap-streets{ position:absolute; inset:0; width:100%; height:100%; }
+  .lmap-streets line{ stroke-dasharray:1600; stroke-dashoffset:1600; transition:stroke-dashoffset 1s ease; }
+  .lmap.is-open .lmap-streets line{ stroke-dashoffset:0; }
+  .lmap-bldg{ position:absolute; border-radius:3px; background:rgba(8,10,12,.07); border:1px solid rgba(8,10,12,.06);
+    opacity:0; transform:scale(.85); transition:opacity .4s ease, transform .4s ease; }
+  .lmap.is-open .lmap-bldg{ opacity:1; transform:none; }
+  .lmap-pinwrap{ position:absolute; top:42%; left:66%; transform:translate(-50%,-50%); }
+  .lmap-marker{ display:block; transform:translateY(-22px) scale(0); transition:transform .55s cubic-bezier(.34,1.56,.64,1) .3s; }
+  .lmap.is-open .lmap-marker{ transform:translateY(0) scale(1); }
+  .lmap-label{ position:absolute; top:calc(100% + 6px); left:50%; transform:translateX(-50%); white-space:nowrap;
+    background:#fff; border:1px solid rgba(8,10,12,.08); border-radius:10px; padding:5px 9px; text-align:center;
+    box-shadow:0 8px 20px -8px rgba(8,10,12,.25); opacity:0; transition:opacity .3s ease .55s; }
+  .lmap.is-open .lmap-label{ opacity:1; }
+  .lmap-label b{ display:block; font-size:11px; font-weight:700; color:var(--ink); }
+  .lmap-label span{ display:block; font-size:9px; font-family:ui-monospace,monospace; color:var(--muted); }
+  /* lys slør så teksten til venstre forblir lesbar */
+  .lmap-veil{ position:absolute; inset:0; pointer-events:none;
+    background:linear-gradient(105deg, var(--cream) 6%, rgba(243,241,236,.6) 38%, rgba(243,241,236,0) 64%); }
+  /* LIVE-badge */
+  .lmap-badge{ display:flex; align-items:center; gap:.375rem; padding:.25rem .55rem; border-radius:999px;
+    background:rgba(255,255,255,.7); border:1px solid rgba(8,10,12,.06); backdrop-filter:blur(6px); z-index:2; }
+  .lmap-dot{ width:.4rem; height:.4rem; border-radius:999px; background:#34D399; box-shadow:0 0 0 3px rgba(52,211,153,.18); }
+  .lmap-live{ font-size:10px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
+
   @media (prefers-reduced-motion: reduce){
     *{ animation:none !important; transition:none !important; }
     .reveal{ opacity:1 !important; transform:none !important; }
@@ -547,12 +604,40 @@
 
     <div class="grid md:grid-cols-3 gap-5 auto-rows-fr">
       <!-- Kart (stor) -->
-      <div class="reveal md:col-span-2 md:row-span-2 app-card p-8 relative overflow-hidden flex flex-col justify-between min-h-[20rem]">
-        <div class="absolute inset-0 bg-grid opacity-50"></div>
-        <div class="absolute right-8 top-1/2 -translate-y-1/2 hidden sm:block">
-          <span class="relative grid place-items-center"><span class="absolute h-24 w-24 rounded-full bg-amber/30 animate-ping"></span><span class="grid place-items-center h-12 w-12 rounded-full bg-ink text-amber"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span></span>
+      <div class="reveal bento md:col-span-2 md:row-span-2 app-card p-8 relative overflow-hidden flex flex-col justify-between min-h-[20rem]">
+        <!-- Lyst lokasjonskart som fyller hele kortet (scroll-drevet, ingen parallax) -->
+        <div class="lmap" aria-hidden="true">
+          <div class="lmap-mapbg"></div>
+          <div class="lmap-grid"></div>
+          <svg class="lmap-streets" preserveAspectRatio="none">
+            <line x1="0%" y1="35%" x2="100%" y2="35%" stroke="rgba(8,10,12,.14)" stroke-width="5" style="transition-delay:.2s"/>
+            <line x1="0%" y1="68%" x2="100%" y2="68%" stroke="rgba(8,10,12,.14)" stroke-width="5" style="transition-delay:.3s"/>
+            <line x1="32%" y1="0%" x2="32%" y2="100%" stroke="rgba(8,10,12,.11)" stroke-width="4" style="transition-delay:.4s"/>
+            <line x1="72%" y1="0%" x2="72%" y2="100%" stroke="rgba(8,10,12,.11)" stroke-width="4" style="transition-delay:.5s"/>
+            <line x1="0%" y1="18%" x2="100%" y2="18%" stroke="rgba(8,10,12,.06)" stroke-width="2" style="transition-delay:.6s"/>
+            <line x1="0%" y1="52%" x2="100%" y2="52%" stroke="rgba(8,10,12,.06)" stroke-width="2" style="transition-delay:.7s"/>
+            <line x1="0%" y1="85%" x2="100%" y2="85%" stroke="rgba(8,10,12,.06)" stroke-width="2" style="transition-delay:.8s"/>
+            <line x1="16%" y1="0%" x2="16%" y2="100%" stroke="rgba(8,10,12,.06)" stroke-width="2" style="transition-delay:.7s"/>
+            <line x1="50%" y1="0%" x2="50%" y2="100%" stroke="rgba(8,10,12,.06)" stroke-width="2" style="transition-delay:.85s"/>
+            <line x1="88%" y1="0%" x2="88%" y2="100%" stroke="rgba(8,10,12,.06)" stroke-width="2" style="transition-delay:1s"/>
+          </svg>
+          <span class="lmap-bldg" style="top:42%;left:38%;width:9%;height:18%;transition-delay:.5s"></span>
+          <span class="lmap-bldg" style="top:20%;left:54%;width:11%;height:11%;transition-delay:.6s"></span>
+          <span class="lmap-bldg" style="top:72%;left:78%;width:12%;height:14%;transition-delay:.7s"></span>
+          <span class="lmap-bldg" style="top:24%;right:7%;width:8%;height:20%;transition-delay:.55s"></span>
+          <span class="lmap-bldg" style="top:74%;left:40%;width:9%;height:9%;transition-delay:.65s"></span>
+          <span class="lmap-bldg" style="top:10%;left:80%;width:11%;height:8%;transition-delay:.75s"></span>
+          <div class="lmap-pinwrap">
+            <span class="lmap-marker">
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" style="filter:drop-shadow(0 4px 6px rgba(8,10,12,.25))"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#34D399"/><circle cx="12" cy="9" r="2.5" fill="#fff"/></svg>
+            </span>
+            <div class="lmap-label"><b>Oslo, Norge</b><span>59.9139° N, 10.7522° E</span></div>
+          </div>
+          <div class="lmap-veil"></div>
         </div>
-        <span class="relative grid place-items-center h-12 w-12 rounded-2xl bg-amber text-ink"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 20l-5.5 2V6L9 4m0 16l6-2m-6 2V4m6 14l5.5 2V4L15 6m0 12V6m-6-2l6 2"/></svg></span>
+        <!-- LIVE-badge -->
+        <div class="lmap-badge absolute top-6 right-6"><span class="lmap-dot"></span><span class="lmap-live">Live</span></div>
+        <span class="bento-icon relative grid place-items-center h-12 w-12 rounded-2xl bg-amber text-ink"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 20l-5.5 2V6L9 4m0 16l6-2m-6 2V4m6 14l5.5 2V4L15 6m0 12V6m-6-2l6 2"/></svg></span>
         <div class="relative mt-6 max-w-sm">
           <h3 class="font-display text-2xl font-extrabold">Kart over alle jobber</h3>
           <p class="text-muted mt-2 leading-relaxed">Se oppdragene dine på kart, finn nærmeste jobb og naviger dit. Hver jobb har lagrede koordinater fra Kartverket.</p>
@@ -560,22 +645,22 @@
       </div>
 
       <!-- Kunderegister -->
-      <div class="reveal app-card p-7">
-        <span class="grid place-items-center h-12 w-12 rounded-2xl bg-cream text-ink mb-5"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg></span>
+      <div class="reveal bento app-card p-7">
+        <span class="bento-icon grid place-items-center h-12 w-12 rounded-2xl bg-cream text-ink mb-5"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg></span>
         <h3 class="font-display text-xl font-bold">Kunderegister</h3>
         <p class="text-muted mt-2 leading-relaxed">Administrer kunder og kontaktinfo ett sted, og knytt dem til jobber og rapporter.</p>
       </div>
 
       <!-- Org.nr-oppslag -->
-      <div class="reveal app-card p-7">
-        <span class="grid place-items-center h-12 w-12 rounded-2xl bg-cream text-ink mb-5"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/><path d="M9 9v.01M9 13v.01M9 17v.01"/></svg></span>
+      <div class="reveal bento app-card p-7">
+        <span class="bento-icon grid place-items-center h-12 w-12 rounded-2xl bg-cream text-ink mb-5"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/><path d="M9 9v.01M9 13v.01M9 17v.01"/></svg></span>
         <h3 class="font-display text-xl font-bold">Org.nr-oppslag</h3>
         <p class="text-muted mt-2 leading-relaxed">Hent firmaopplysninger automatisk fra Brønnøysundregistrene med ett organisasjonsnummer.</p>
       </div>
 
       <!-- Personvern (bred) -->
-      <div class="reveal md:col-span-2 app-card p-7 flex flex-col sm:flex-row gap-6 items-start">
-        <span class="grid place-items-center h-12 w-12 rounded-2xl bg-cream text-ink shrink-0"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+      <div class="reveal bento md:col-span-2 app-card p-7 flex flex-col sm:flex-row gap-6 items-start">
+        <span class="bento-icon grid place-items-center h-12 w-12 rounded-2xl bg-cream text-ink shrink-0"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
         <div>
           <h3 class="font-display text-xl font-bold">Lokalt og privat</h3>
           <p class="text-muted mt-2 leading-relaxed">Dataene dine lagres på enheten, ikke på en server. Bildene dine sendes <span class="font-semibold text-ink">aldri</span> til AI — kun lyd- og tekstnotater brukes til å lage rapporten.</p>
@@ -583,9 +668,9 @@
       </div>
 
       <!-- Gratis å starte -->
-      <div class="reveal app-card p-7 bg-ink text-white relative overflow-hidden">
+      <div class="reveal bento bento-dark app-card p-7 bg-ink text-white relative overflow-hidden">
         <div class="absolute -right-10 -bottom-10 h-40 w-40 glow-amber blur-2xl opacity-40"></div>
-        <span class="relative grid place-items-center h-12 w-12 rounded-2xl bg-amber text-ink mb-5"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12v10H4V12M2 7h20v5H2zM12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg></span>
+        <span class="bento-icon relative grid place-items-center h-12 w-12 rounded-2xl bg-amber text-ink mb-5"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12v10H4V12M2 7h20v5H2zM12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg></span>
         <h3 class="font-display text-xl font-bold relative">Gratis å starte</h3>
         <p class="text-white/70 mt-2 leading-relaxed relative">5 rapporter gratis. Trenger du mer, oppgraderer du til Solo — du betaler per rapport, ikke for hele kontoret.</p>
       </div>
@@ -836,6 +921,23 @@
       }
     });
   });
+
+  /* ---- Lokasjonskart: utvides når kortet scrolles inn i visning (ingen klikk/parallax).
+         Bruker rå scroll-sjekk (samme pålitelige mønster som journey), ikke IO. ---- */
+  const lmap = document.querySelector('.lmap');
+  const lmapCard = lmap && (lmap.closest('.bento') || lmap);
+  function updateLmap(){
+    if (!lmap || !lmapCard) return;
+    if (reduce){ lmap.classList.add('is-open'); return; }
+    const r = lmapCard.getBoundingClientRect();
+    const vh = window.innerHeight;
+    // åpen når kortet er godt synlig (midtpunkt innenfor visningen)
+    const mid = r.top + r.height / 2;
+    lmap.classList.toggle('is-open', mid > vh * 0.15 && mid < vh * 0.85);
+  }
+  window.addEventListener('scroll', updateLmap, { passive: true });
+  window.addEventListener('resize', updateLmap);
+  updateLmap();
 })();
 </script>
 
