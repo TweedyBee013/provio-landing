@@ -182,9 +182,17 @@
   .lmap-dot{ width:.4rem; height:.4rem; border-radius:999px; background:#34D399; box-shadow:0 0 0 3px rgba(52,211,153,.18); }
   .lmap-live{ font-size:10px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
 
+  /* ---------- Tegn-på-bilder-demo (annotering) ---------- */
+  /* Tegnes én gang når kortet blas inn i visning (klasse .is-drawn), ikke loop. */
+  .annot-photo{ background:#26282d; }
+  .annot-stroke{ stroke-dasharray:100; stroke-dashoffset:100; transition:stroke-dashoffset 1.1s ease; }
+  .annot-photo.is-drawn .annot-stroke{ stroke-dashoffset:0; }
+  .annot-swatch{ width:18px; height:18px; border-radius:999px; box-shadow:inset 0 0 0 1px rgba(8,10,12,.12); }
+
   @media (prefers-reduced-motion: reduce){
     *{ animation:none !important; transition:none !important; }
     .reveal{ opacity:1 !important; transform:none !important; }
+    .annot-stroke{ stroke-dashoffset:0 !important; opacity:1 !important; }
     html{ scroll-behavior:auto; }
   }
 </style>
@@ -659,6 +667,79 @@
       </div>
 
     </div>
+
+    <!-- ===== Tegn på bilder (demo-vindu) ===== -->
+    <div class="reveal app-card mt-5 grid lg:grid-cols-2 gap-8 lg:gap-14 p-7 sm:p-10 items-center overflow-hidden">
+      <!-- tekst -->
+      <div class="order-2 lg:order-1">
+        <span class="grid place-items-center h-12 w-12 rounded-2xl bg-amber text-ink mb-5"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></span>
+        <h3 class="font-display text-2xl sm:text-3xl font-extrabold">Tegn rett på bildene</h3>
+        <p class="text-muted mt-3 leading-relaxed max-w-md">Marker det som betyr noe — sett en ring rundt skaden, kryss ut det som skal rives, eller pek på en detalj. Tegningene blir en del av dokumentasjonen og rapporten, så kunden ser nøyaktig hva du mener.</p>
+        <div class="flex items-center gap-2.5 mt-6">
+          <span class="annot-swatch" style="background:#E8463C"></span>
+          <span class="annot-swatch" style="background:#FFD358"></span>
+          <span class="annot-swatch" style="background:#2F80ED"></span>
+          <span class="annot-swatch" style="background:#27AE60"></span>
+          <span class="annot-swatch" style="background:#080A0C"></span>
+          <span class="text-sm text-muted ml-1.5">Velg farge, tegn, ferdig.</span>
+        </div>
+      </div>
+
+      <!-- editor-vindu (iPhone 16) -->
+      <div class="order-1 lg:order-2 flex justify-center">
+        <div class="iphone relative aspect-[280/580] w-[240px] sm:w-[260px] rounded-[3rem] p-[7px]">
+          <div class="hw-btn absolute top-[120px] -left-[3px] h-[44px] w-[3px] rounded-l"></div>
+          <div class="hw-btn absolute top-[180px] -right-[3px] h-[64px] w-[3px] rounded-r"></div>
+          <div class="iphone-screen relative h-full w-full overflow-hidden rounded-[2.5rem] bg-ink">
+            <div class="screen-glare absolute inset-0 z-40 pointer-events-none"></div>
+            <!-- dynamic island -->
+            <div class="absolute top-2 left-1/2 -translate-x-1/2 h-7 w-[92px] rounded-full bg-black z-50"></div>
+            <!-- editor -->
+            <div class="absolute inset-0 pt-11 pb-3 px-3 flex flex-col text-white">
+              <!-- topp-verktøy -->
+              <div class="flex items-center justify-between">
+                <span class="grid place-items-center h-8 w-8 rounded-full bg-white/10"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></span>
+                <div class="flex items-center gap-1.5">
+                  <span class="grid place-items-center h-8 w-8 rounded-full bg-white/10"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg></span>
+                  <span class="grid place-items-center h-8 w-8 rounded-full bg-white/10"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9z"/></svg></span>
+                  <span class="grid place-items-center h-8 w-8 rounded-full bg-white/10"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/></svg></span>
+                </div>
+              </div>
+
+              <!-- foto (ensfarget) med tegning -->
+              <div class="annot-photo relative flex-1 rounded-2xl overflow-hidden mt-2.5">
+                <svg class="absolute inset-0 w-full h-full" viewBox="0 0 240 420" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                  <!-- rød ring rundt detalj -->
+                  <path class="annot-stroke" pathLength="100" d="M120 102 C84 100 66 132 74 164 C82 198 120 212 154 204 C186 196 180 142 168 122 C157 104 138 96 120 106" fill="none" stroke="#E8463C" stroke-width="8" stroke-linecap="round"/>
+                  <!-- rød pil (ett sammenhengende strøk fra ett punkt) -->
+                  <path class="annot-stroke" style="transition-delay:.9s" pathLength="100" d="M94 350 Q114 300 120 230 L102 252 L120 230 L140 250" fill="none" stroke="#E8463C" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+
+              <!-- fargepalett -->
+              <div class="flex items-center justify-center gap-2.5 pt-3">
+                <span class="annot-swatch ring-2 ring-white ring-offset-2 ring-offset-ink" style="background:#E8463C"></span>
+                <span class="annot-swatch" style="background:#FFD358"></span>
+                <span class="annot-swatch" style="background:#2F80ED"></span>
+                <span class="annot-swatch" style="background:#27AE60"></span>
+                <span class="annot-swatch" style="background:#3A3B3F"></span>
+                <span class="annot-swatch" style="background:#FFFFFF"></span>
+              </div>
+
+              <!-- verktøylinje -->
+              <div class="flex items-center justify-between pt-3">
+                <div class="flex items-center gap-1.5">
+                  <span class="grid place-items-center h-8 w-8 rounded-full bg-white/10"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7v6h6"/><path d="M3 13a9 9 0 1 0 3-7.7L3 8"/></svg></span>
+                  <span class="grid place-items-center h-8 w-8 rounded-full bg-white/10"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20H7L3 16a2 2 0 0 1 0-2.8l9-9a2 2 0 0 1 2.8 0l5 5a2 2 0 0 1 0 2.8L13 20"/></svg></span>
+                  <span class="grid place-items-center h-8 w-8 rounded-full bg-white/10 text-[#E8463C]"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></span>
+                </div>
+                <span class="inline-flex items-center gap-1 rounded-full bg-amber text-ink text-xs font-bold px-3 py-1.5"><svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Ferdig</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -922,6 +1003,19 @@
   window.addEventListener('scroll', updateLmap, { passive: true });
   window.addEventListener('resize', updateLmap);
   updateLmap();
+
+  /* ---- Tegn-på-bilder: tegn strekene ÉN gang når kortet blas inn i visning ---- */
+  const annot = document.querySelector('.annot-photo');
+  function updateAnnot(){
+    if (!annot || annot.classList.contains('is-drawn')) return;
+    const r = annot.getBoundingClientRect();
+    if (r.top < window.innerHeight * 0.8 && r.bottom > 0){
+      annot.classList.add('is-drawn');
+      window.removeEventListener('scroll', updateAnnot);
+    }
+  }
+  window.addEventListener('scroll', updateAnnot, { passive: true });
+  updateAnnot();
 })();
 </script>
 
