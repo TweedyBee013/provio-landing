@@ -1,0 +1,694 @@
+<!doctype html>
+<html lang="no">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dokumentasjonskrav for arbeid i bolig | Provio</title>
+<meta name="description" content="Se hva som bør dokumenteres ved tømrerarbeid, elektro, våtrom og egenarbeid. Provio hjelper håndverkere å samle bilder, notater og rapporter." />
+<link rel="canonical" href="https://www.provio.tech/dokumentasjonskrav.html" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Hva bør dokumenteres når arbeid utføres i bolig? | Provio" />
+<meta property="og:description" content="Praktisk oversikt over dokumentasjon for tømrer, elektro, våtrom og egenarbeid – og hvordan Provio samler alt i ryddige, signerte rapporter." />
+<meta property="og:url" content="https://www.provio.tech/dokumentasjonskrav.html" />
+<meta property="og:locale" content="nb_NO" />
+
+<!-- ============================================================
+     FONTS — Inter Tight (display) + Inter (body), per merkevare
+============================================================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Tailwind Play CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink:    '#080A0C',
+          amber:  { DEFAULT: '#FFD358', light: '#FFF5CC', mid: '#FFE58A', text: '#5C4200' },
+          cream:  '#F3F1EC',
+          mist:   '#F3F3F3',
+          muted:  '#6B6869',
+          faint:  '#AEABAA',
+        },
+        fontFamily: {
+          display: ['"Inter Tight"', 'system-ui', 'sans-serif'],
+          sans:    ['Inter', 'system-ui', 'sans-serif'],
+        },
+        borderRadius: { '4xl': '2rem', '5xl': '2.5rem' },
+      }
+    }
+  }
+</script>
+
+<!-- GSAP + ScrollTrigger -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<style>
+  :root{
+    --ink:#080A0C; --amber:#FFD358; --amber-mid:#FFE58A; --amber-light:#FFF5CC;
+    --cream:#F3F1EC; --mist:#F3F3F3; --muted:#6B6869; --white:#FFFFFF;
+  }
+  html{ scroll-behavior:smooth; }
+  body{ font-family:'Inter',system-ui,sans-serif; background:var(--cream); color:var(--ink); -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+  ::selection{ background:var(--amber); color:var(--ink); }
+  .font-display{ font-family:'Inter Tight',sans-serif; letter-spacing:-0.02em; }
+  .reveal{ opacity:0; transform:translateY(28px); }
+
+  .glow-amber{ background:radial-gradient(circle, rgba(255,211,88,0.55) 0%, rgba(255,211,88,0) 70%); }
+
+  /* Mørk hero-grid (lyse linjer på sort) */
+  .bg-grid-dark{
+    background-size:46px 46px;
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+  }
+  .grid-mask{ -webkit-mask-image:radial-gradient(ellipse 75% 70% at 50% 38%, #000 0%, transparent 75%);
+              mask-image:radial-gradient(ellipse 75% 70% at 50% 38%, #000 0%, transparent 75%); }
+
+  .film-grain{ position:absolute; inset:0; pointer-events:none; z-index:50; opacity:0.04; mix-blend-mode:multiply;
+    background:url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)"/></svg>'); }
+
+  /* CTA-knapper (samme taktile stil som forsiden) */
+  .btn-store{ transition:all .35s cubic-bezier(.25,1,.5,1); }
+  .btn-dark{ background:linear-gradient(180deg,#1b1d20 0%,#080A0C 100%); color:#fff;
+    box-shadow:0 0 0 1px rgba(255,255,255,.06), 0 2px 4px rgba(0,0,0,.4), 0 14px 26px -6px rgba(8,10,12,.5), inset 0 1px 1px rgba(255,255,255,.12); }
+  .btn-dark:hover{ transform:translateY(-3px); box-shadow:0 0 0 1px rgba(255,255,255,.1), 0 18px 34px -8px rgba(8,10,12,.55), inset 0 1px 1px rgba(255,255,255,.16); }
+  .btn-dark:active{ transform:translateY(1px); }
+  .btn-amber{ background:linear-gradient(180deg,#FFE58A 0%,#FFD358 100%); color:var(--ink);
+    box-shadow:0 0 0 1px rgba(92,66,0,.15), 0 2px 4px rgba(92,66,0,.18), 0 14px 26px -6px rgba(255,211,88,.55), inset 0 1px 1px rgba(255,255,255,.7), inset 0 -3px 6px rgba(92,66,0,.12); }
+  .btn-amber:hover{ transform:translateY(-3px); box-shadow:0 0 0 1px rgba(92,66,0,.15), 0 20px 36px -8px rgba(255,211,88,.6), inset 0 1px 1px rgba(255,255,255,.8), inset 0 -3px 6px rgba(92,66,0,.12); }
+  .btn-amber:active{ transform:translateY(1px); }
+
+  .app-card{ background:#fff; border:1px solid rgba(8,10,12,.07); border-radius:18px; box-shadow:0 6px 16px -8px rgba(8,10,12,.12); }
+  .pill{ border-radius:999px; }
+  .chip-amber{ background:var(--amber-light); color:var(--amber-text); }
+
+  /* Fagområde-kort */
+  .cat-card{ transition:transform .3s ease, box-shadow .3s ease; }
+  .cat-card:hover{ transform:translateY(-4px); box-shadow:0 16px 34px -16px rgba(8,10,12,.20); }
+
+  /* FAQ */
+  details.faq{ border-bottom:1px solid rgba(8,10,12,.08); }
+  details.faq summary{ cursor:pointer; list-style:none; }
+  details.faq summary::-webkit-details-marker{ display:none; }
+  details.faq[open] .faq-chevron{ transform:rotate(180deg); }
+  .faq-chevron{ transition:transform .25s ease; }
+
+  /* Ankere skal ikke gjemmes bak fast navbar */
+  section[id]{ scroll-margin-top:88px; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+    .reveal{ opacity:1 !important; transform:none !important; }
+    html{ scroll-behavior:auto; }
+  }
+</style>
+
+<!-- Strukturerte data: FAQ + breadcrumb -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Må alt arbeid dokumenteres?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Nei, ikke alt arbeid har formelle dokumentasjonskrav. Men god dokumentasjon med bilder, dato og beskrivelse er nyttig ved de fleste jobber – både for kunden, ved senere salg av boligen og hvis det oppstår spørsmål eller reklamasjon i etterkant. Enkelte fagområder, som elektro og søknadspliktig arbeid, har egne lovpålagte krav." }
+    },
+    {
+      "@type": "Question",
+      "name": "Erstatter Provio FDV-dokumentasjon?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Nei. FDV-dokumentasjon (forvaltning, drift og vedlikehold) har egne krav i byggteknisk forskrift. Provio er et praktisk verktøy for å samle bilder, beskrivelser, signatur og rapporter, og kan brukes som et supplement – ikke som erstatning for lovpålagt dokumentasjon." }
+    },
+    {
+      "@type": "Question",
+      "name": "Kan Provio brukes til elektroarbeid?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ja, som et tillegg. Elektroarbeid skal utføres og dokumenteres av kvalifiserte fagfolk, og samsvarserklæring er lovpålagt. Provio kan brukes til bilder av arbeidet, beskrivelser og ryddig overlevering til kunde, men erstatter ikke samsvarserklæring eller annen påkrevd elektrodokumentasjon." }
+    },
+    {
+      "@type": "Question",
+      "name": "Hvorfor bør man ta bilder underveis?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Mye av det viktigste arbeidet blir skjult bak vegger, gulv og overflater. Bilder tatt underveis – før konstruksjoner lukkes – er ofte den eneste måten å vise hva som faktisk ble gjort. Sammen med dato, sted og en kort beskrivelse gir det et mye sterkere grunnlag ved spørsmål, salg eller reklamasjon." }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Provio", "item": "https://www.provio.tech/" },
+    { "@type": "ListItem", "position": 2, "name": "Dokumentasjonskrav for arbeid i bolig", "item": "https://www.provio.tech/dokumentasjonskrav.html" }
+  ]
+}
+</script>
+</head>
+
+<body class="font-sans text-ink">
+
+<!-- ======================= NAVBAR ======================= -->
+<header id="nav" class="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-xl border-b border-ink/5 transition-all duration-300">
+  <div class="mx-auto max-w-7xl px-5 lg:px-8">
+    <div class="flex items-center justify-between py-3.5">
+      <a href="index.html" class="flex items-center gap-1 font-display text-2xl font-extrabold tracking-tight">
+        Provio<span class="-mt-3 ml-[1px] h-2 w-2 rounded-full bg-amber"></span>
+      </a>
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-muted">
+        <a href="index.html#problem" class="hover:text-ink transition">Hvorfor Provio</a>
+        <a href="index.html#hvordan" class="hover:text-ink transition">Slik fungerer det</a>
+        <a href="#fagomrader" class="text-ink font-semibold">Dokumentasjonskrav</a>
+      </nav>
+      <a href="https://apps.apple.com/no/app/provio/id6784005004?l=nb" target="_blank" rel="noopener" class="btn-store btn-dark inline-flex items-center gap-2 rounded-full px-4 sm:px-5 py-2.5 text-sm font-semibold">
+        Last ned
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ======================= HERO (mørk) ======================= -->
+<section id="top" class="relative overflow-hidden bg-ink text-white pt-36 pb-20 sm:pt-44 lg:pt-48">
+  <div class="absolute inset-0 bg-grid-dark grid-mask opacity-80" aria-hidden="true"></div>
+  <div class="absolute -top-32 right-[-10%] h-[42rem] w-[42rem] glow-amber blur-2xl opacity-30" aria-hidden="true"></div>
+  <div class="absolute bottom-[-20%] left-[-15%] h-[34rem] w-[34rem] glow-amber blur-2xl opacity-15" aria-hidden="true"></div>
+
+  <div class="relative mx-auto max-w-7xl px-5 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-14 lg:gap-8 items-center">
+      <!-- venstre: tekst -->
+      <div class="text-center lg:text-left">
+        <p class="reveal inline-flex items-center gap-2 pill chip-amber px-4 py-1.5 text-sm font-semibold">
+          <span class="h-1.5 w-1.5 rounded-full bg-amber-text"></span>
+          Praktisk guide for håndverkere og boligeiere
+        </p>
+        <h1 class="reveal font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.05] mt-6">
+          Hva bør dokumenteres når arbeid utføres <span class="text-amber">i bolig?</span>
+        </h1>
+        <p class="reveal mt-6 text-lg text-white/70 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+          Få oversikt over hva som bør dokumenteres ved tømrerarbeid, elektro, våtrom og egenarbeid — og hvordan Provio hjelper deg å samle alt i ryddige rapporter.
+        </p>
+        <div class="reveal mt-9 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+          <a href="https://apps.apple.com/no/app/provio/id6784005004?l=nb" target="_blank" rel="noopener" class="btn-store btn-amber inline-flex items-center justify-center gap-3 rounded-2xl px-6 py-4 font-bold">
+            <svg class="h-6 w-6" viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+            Last ned Provio
+          </a>
+          <a href="#fagomrader" class="inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-4 font-bold text-white ring-1 ring-white/20 hover:bg-white/10 transition">
+            Se hva du bør dokumentere
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- høyre: rapport-mockup -->
+      <div class="reveal hidden lg:flex justify-end" aria-hidden="true">
+        <div class="relative">
+          <div class="absolute -inset-8 glow-amber blur-2xl opacity-30"></div>
+          <!-- rapport-kort -->
+          <div class="relative w-[380px] rounded-3xl bg-white text-ink p-7 shadow-2xl rotate-2">
+            <div class="flex items-start justify-between border-b-2 border-ink pb-4">
+              <div>
+                <p class="font-display font-extrabold text-lg leading-none">Bygg &amp; Bad AS</p>
+                <p class="text-[10px] text-muted font-semibold mt-1">Org.nr 999 999 999</p>
+              </div>
+              <div class="text-right">
+                <p class="text-[9px] uppercase tracking-widest text-faint font-semibold">Arbeidsrapport</p>
+                <p class="font-display font-extrabold text-sm">JP-202607-84K2</p>
+              </div>
+            </div>
+            <div class="mt-4">
+              <p class="text-[9px] uppercase tracking-widest text-faint font-bold">Utført arbeid</p>
+              <p class="font-bold text-sm mt-1.5">Legging av membran på bad</p>
+              <p class="text-xs text-muted mt-1 leading-relaxed">Underlag kontrollert og primet. Membran påført i to strøk med mansjetter rundt sluk og rørgjennomføringer.</p>
+            </div>
+            <div class="mt-4 grid grid-cols-3 gap-2">
+              <div class="aspect-square rounded-xl bg-mist grid place-items-center"><span class="pill chip-amber text-[9px] font-bold px-2 py-0.5">FØR</span></div>
+              <div class="aspect-square rounded-xl bg-mist grid place-items-center"><span class="pill chip-amber text-[9px] font-bold px-2 py-0.5">UNDER</span></div>
+              <div class="aspect-square rounded-xl bg-mist grid place-items-center"><span class="pill chip-amber text-[9px] font-bold px-2 py-0.5">ETTER</span></div>
+            </div>
+            <div class="mt-4 flex items-end justify-between border-t border-ink/10 pt-4">
+              <div>
+                <p class="text-[9px] uppercase tracking-widest text-faint font-bold">Signert av kunde</p>
+                <svg class="mt-1 h-8 w-28" viewBox="0 0 120 32" fill="none" stroke="#080A0C" stroke-width="1.6" stroke-linecap="round"><path d="M4 24c8-14 14-16 16-8s-4 12 4 8 12-16 18-12-2 14 6 10 10-12 16-8 4 12 12 6 14-10 20-6"/></svg>
+              </div>
+              <div class="text-right text-[10px] text-muted font-semibold">
+                <p>08.07.2026</p>
+                <p>Storgata 12, Oslo</p>
+              </div>
+            </div>
+          </div>
+          <!-- flytende sjekk-badge -->
+          <div class="absolute -left-10 top-10 app-card px-4 py-3 -rotate-3">
+            <div class="flex items-center gap-2.5">
+              <span class="grid place-items-center h-8 w-8 rounded-full bg-amber"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="#080A0C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+              <div><p class="text-xs font-bold leading-none">Dokumentert før lukking</p><p class="text-[10px] text-muted mt-0.5">12 bilder · membran + sluk</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= PROBLEM ======================= -->
+<section id="problem" class="relative py-20 sm:py-28">
+  <div class="mx-auto max-w-7xl px-5 lg:px-8">
+    <div class="max-w-2xl">
+      <p class="reveal text-sm font-bold uppercase tracking-widest text-amber-text">Hvorfor dokumentere?</p>
+      <h2 class="reveal font-display text-3xl sm:text-5xl font-extrabold mt-4 leading-tight">
+        Når arbeidet er skjult, er det <span class="text-muted">for sent å dokumentere.</span>
+      </h2>
+      <p class="reveal text-lg text-muted mt-5 leading-relaxed">
+        Mye av det viktigste arbeidet blir skjult bak vegger, gulv, plater og overflater. Uten bilder, tidspunkt og en tydelig beskrivelse kan det bli vanskelig å vise hva som faktisk er gjort hvis kunden spør, boligen skal selges eller det oppstår en reklamasjon.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-5 mt-14">
+      <div class="reveal app-card p-7">
+        <span class="grid place-items-center h-12 w-12 rounded-2xl bg-cream text-ink mb-5"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></span>
+        <h3 class="font-display text-xl font-bold">Skjulte konstruksjoner</h3>
+        <p class="text-muted mt-2 leading-relaxed">Dokumenter før vegger, gulv og himling lukkes. Etterpå er det for sent å vise hva som ligger bak.</p>
+      </div>
+      <div class="reveal app-card p-7">
+        <span class="grid place-items-center h-12 w-12 rounded-2xl bg-cream text-ink mb-5"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15l2 2 4-4"/></svg></span>
+        <h3 class="font-display text-xl font-bold">Ryddigere overlevering</h3>
+        <p class="text-muted mt-2 leading-relaxed">Gi kunden en rapport som viser hva som er gjort — i stedet for løse bilder og meldinger.</p>
+      </div>
+      <div class="reveal app-card p-7">
+        <span class="grid place-items-center h-12 w-12 rounded-2xl bg-cream text-ink mb-5"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+        <h3 class="font-display text-xl font-bold">Sterkere ved spørsmål</h3>
+        <p class="text-muted mt-2 leading-relaxed">Bilder, dato, sted og signatur gir bedre grunnlag ved uenighet eller senere spørsmål.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= FAGOMRÅDEVELGER ======================= -->
+<section id="fagomrader" class="relative py-16 sm:py-20 bg-white/60 border-y border-ink/5">
+  <div class="mx-auto max-w-7xl px-5 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto">
+      <p class="reveal text-sm font-bold uppercase tracking-widest text-amber-text">Velg fagområde</p>
+      <h2 class="reveal font-display text-3xl sm:text-4xl font-extrabold mt-4">Hva jobber du med?</h2>
+    </div>
+
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 mt-12">
+      <a href="#tomrer" class="reveal cat-card app-card p-6 sm:p-7 block">
+        <span class="grid place-items-center h-12 w-12 rounded-2xl bg-amber text-ink mb-4"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 12l-8.5 8.5a2.12 2.12 0 0 1-3-3L12 9"/><path d="M17.64 15L22 10.64"/><path d="M20.91 11.7l-1.25-1.25c-.6-.6-.93-1.4-.93-2.25v-.86L16.01 4.6a5.56 5.56 0 0 0-3.94-1.64H9l.92.82A6.18 6.18 0 0 1 12 8.4v1.56l2 2h2.47l2.26 1.91"/></svg></span>
+        <h3 class="font-display font-bold text-base sm:text-lg leading-tight">Tømrer / snekker</h3>
+        <p class="text-muted text-xs sm:text-sm mt-1.5 leading-snug">Skjulte konstruksjoner, isolasjon og lukking</p>
+      </a>
+      <a href="#elektro" class="reveal cat-card app-card p-6 sm:p-7 block">
+        <span class="grid place-items-center h-12 w-12 rounded-2xl bg-amber text-ink mb-4"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>
+        <h3 class="font-display font-bold text-base sm:text-lg leading-tight">Elektro</h3>
+        <p class="text-muted text-xs sm:text-sm mt-1.5 leading-snug">Bilder og rapport i tillegg til formell dokumentasjon</p>
+      </a>
+      <a href="#vatrom" class="reveal cat-card app-card p-6 sm:p-7 block">
+        <span class="grid place-items-center h-12 w-12 rounded-2xl bg-amber text-ink mb-4"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7s6 6.3 6 11.3a6 6 0 0 1-12 0c0-5 6-11.3 6-11.3z"/></svg></span>
+        <h3 class="font-display font-bold text-base sm:text-lg leading-tight">Våtrom / bad</h3>
+        <p class="text-muted text-xs sm:text-sm mt-1.5 leading-snug">Membran, sluk og tetting før tildekking</p>
+      </a>
+      <a href="#egenarbeid" class="reveal cat-card app-card p-6 sm:p-7 block">
+        <span class="grid place-items-center h-12 w-12 rounded-2xl bg-amber text-ink mb-4"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg></span>
+        <h3 class="font-display font-bold text-base sm:text-lg leading-tight">Egenarbeid</h3>
+        <p class="text-muted text-xs sm:text-sm mt-1.5 leading-snug">Dokumenter det du gjør selv i egen bolig</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= TØMRER / SNEKKER ======================= -->
+<section id="tomrer" class="relative py-20 sm:py-28">
+  <div class="mx-auto max-w-7xl px-5 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+      <div>
+        <p class="reveal text-sm font-bold uppercase tracking-widest text-amber-text">Tømrer / snekker</p>
+        <h2 class="reveal font-display text-3xl sm:text-4xl font-extrabold mt-4 leading-tight">Dokumentasjon for tømrer- og snekkerarbeid</h2>
+        <p class="reveal text-lg text-muted mt-5 leading-relaxed">
+          Tømrerarbeid innebærer ofte konstruksjoner og detaljer som senere blir skjult. Derfor bør arbeidet dokumenteres underveis — ikke bare når det er ferdig.
+        </p>
+        <div class="reveal mt-7 app-card p-6">
+          <p class="text-xs font-bold uppercase tracking-widest text-faint">Hvorfor det er viktig</p>
+          <p class="text-muted mt-2 leading-relaxed">Bilder, beskrivelser og dato gjør det enklere å vise hva som faktisk ble gjort dersom kunden spør i etterkant — eller boligen skal selges.</p>
+        </div>
+        <div class="reveal mt-5 rounded-3xl bg-ink text-white p-6">
+          <p class="text-xs font-bold uppercase tracking-widest text-amber">Slik hjelper Provio</p>
+          <p class="text-white/80 mt-2 leading-relaxed">Med Provio kan du ta før-, under- og etterbilder, legge inn en kort beskrivelse og samle alt i én signert PDF-rapport.</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="reveal app-card p-7">
+          <h3 class="font-display text-lg font-bold flex items-center gap-2.5">
+            <span class="grid place-items-center h-8 w-8 rounded-xl bg-amber"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="#080A0C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+            Dette bør dokumenteres
+          </h3>
+          <ul class="mt-5 space-y-3 text-muted leading-relaxed">
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 mt-0.5 text-amber-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Bilder før oppstart</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 mt-0.5 text-amber-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Eksisterende skader, råte, fukt eller skjevheter</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 mt-0.5 text-amber-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Åpne konstruksjoner før lukking</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 mt-0.5 text-amber-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Isolasjon, vindtetting og dampsperre</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 mt-0.5 text-amber-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Beslag, festepunkter og overganger</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 mt-0.5 text-amber-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Materialvalg og produktnavn</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 mt-0.5 text-amber-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Avvik eller endringer fra avtalt løsning</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 mt-0.5 text-amber-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Ferdig resultat</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 mt-0.5 text-amber-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Dato, adresse og hvem som utførte arbeidet</li>
+          </ul>
+        </div>
+        <div class="reveal mt-5 app-card p-6">
+          <p class="text-xs font-bold uppercase tracking-widest text-faint">Eksempel på rapporter</p>
+          <div class="flex flex-wrap gap-2 mt-3">
+            <span class="pill chip-amber px-3 py-1.5 text-xs font-semibold">Utskifting av kledning</span>
+            <span class="pill chip-amber px-3 py-1.5 text-xs font-semibold">Etterisolering av yttervegg</span>
+            <span class="pill chip-amber px-3 py-1.5 text-xs font-semibold">Montering av vindu</span>
+            <span class="pill chip-amber px-3 py-1.5 text-xs font-semibold">Oppbygging av lettvegg</span>
+            <span class="pill chip-amber px-3 py-1.5 text-xs font-semibold">Reparasjon etter fuktskade</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= ELEKTRO ======================= -->
+<section id="elektro" class="relative py-20 sm:py-28 bg-white/60 border-y border-ink/5">
+  <div class="mx-auto max-w-7xl px-5 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+      <div>
+        <p class="reveal text-sm font-bold uppercase tracking-widest text-amber-text">Elektro</p>
+        <h2 class="reveal font-display text-3xl sm:text-4xl font-extrabold mt-4 leading-tight">Dokumentasjon for elektroarbeid</h2>
+        <p class="reveal text-lg text-muted mt-5 leading-relaxed">
+          Elektroarbeid skal utføres og dokumenteres av kvalifiserte fagfolk. I tillegg til formell dokumentasjon kan bilder og arbeidsrapporter gjøre det enklere å vise hva som er gjort, hvor arbeidet er utført og hvilke forhold som ble avdekket underveis.
+        </p>
+        <div class="reveal mt-7 rounded-2xl border border-amber-text/20 bg-amber-light/60 p-5">
+          <p class="text-sm font-bold text-amber-text flex items-center gap-2">
+            <svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9l-8 13.9A2 2 0 0 0 4 21h16a2 2 0 0 0 1.7-3.2l-8-13.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+            Viktig forbehold
+          </p>
+          <p class="text-sm text-amber-text/90 mt-2 leading-relaxed">Provio erstatter ikke samsvarserklæring eller annen påkrevd elektrodokumentasjon, men kan brukes som et tillegg for bilder, beskrivelser og overlevering til kunde.</p>
+        </div>
+        <div class="reveal mt-5 rounded-3xl bg-ink text-white p-6">
+          <p class="text-xs font-bold uppercase tracking-widest text-amber">Slik hjelper Provio</p>
+          <p class="text-white/80 mt-2 leading-relaxed">Last opp bilder, legg ved dokumenter og gi kunden en ryddig oppsummering av arbeidet.</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="reveal app-card p-7">
+          <h3 class="font-display text-lg font-bold flex items-center gap-2.5">
+            <span class="grid place-items-center h-8 w-8 rounded-xl bg-amber"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="#080A0C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+            Dette bør dokumenteres
+          </h3>
+          <ul class="mt-5 space-y-3 text-muted leading-relaxed">
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 mt-0.5 text-amber-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Hva arbeidet gjaldt</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 mt-0.5 text-amber-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Rom, adresse og plassering</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 mt-0.5 text-amber-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Førbilder av eksisterende anlegg</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 mt-0.5 text-amber-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Bilder av åpne vegger, trekkerør, bokser og føringsveier før lukking</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 mt-0.5 text-amber-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Produktinformasjon der det er relevant</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 mt-0.5 text-amber-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Avvik eller forhold kunden bør kjenne til</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 mt-0.5 text-amber-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Samsvarserklæring og relevant faglig dokumentasjon som vedlegg</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 mt-0.5 text-amber-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Ferdig resultat</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= VÅTROM / BAD ======================= -->
+<section id="vatrom" class="relative py-20 sm:py-28">
+  <div class="mx-auto max-w-7xl px-5 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+      <div>
+        <p class="reveal text-sm font-bold uppercase tracking-widest text-amber-text">Våtrom / bad</p>
+        <h2 class="reveal font-display text-3xl sm:text-4xl font-extrabold mt-4 leading-tight">Dokumentasjon for våtrom og bad</h2>
+        <p class="reveal text-lg text-muted mt-5 leading-relaxed">
+          På bad blir mye av det viktigste arbeidet skjult før fliser, plater og innredning kommer på plass. Derfor er bilder underveis spesielt verdifulle.
+        </p>
+        <div class="reveal mt-7 app-card p-6">
+          <p class="text-xs font-bold uppercase tracking-widest text-faint">Hvorfor det er viktig</p>
+          <p class="text-muted mt-2 leading-relaxed">Våtrom er blant områdene med flest reklamasjoner og forsikringssaker. Byggteknisk forskrift (TEK17 § 13-15) stiller krav om at våtrom prosjekteres og utføres slik at det ikke oppstår skade fra bruksvann, vannsøl, lekkasjevann og kondens — med vanntette sjikt, tett utførelse rundt gjennomføringer og fall til sluk som sentrale tiltak. Bilder av membran, sluk og tetting <em>før tildekking</em> er ofte den eneste måten å vise at det ble gjort riktig.</p>
+        </div>
+        <div class="reveal mt-5 rounded-3xl bg-ink text-white p-6">
+          <p class="text-xs font-bold uppercase tracking-widest text-amber">Slik hjelper Provio</p>
+          <p class="text-white/80 mt-2 leading-relaxed">Provio gjør det enkelt å dokumentere våtrom steg for steg — fra riving og underlag til ferdig bad.</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="reveal app-card p-7">
+          <h3 class="font-display text-lg font-bold flex items-center gap-2.5">
+            <span class="grid place-items-center h-8 w-8 rounded-xl bg-amber"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="#080A0C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+            Dette bør dokumenteres
+          </h3>
+          <ul class="mt-5 space-y-3 text-muted leading-relaxed">
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 mt-0.5 text-amber-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Rommet før arbeid starter</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 mt-0.5 text-amber-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Riving og avdekkede forhold</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 mt-0.5 text-amber-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Underlag før membran eller tetteprodukter</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 mt-0.5 text-amber-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Sluk og gjennomføringer</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 mt-0.5 text-amber-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Mansjetter og tetting rundt rør</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 mt-0.5 text-amber-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Membran / vanntett sjikt før tildekking</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 mt-0.5 text-amber-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Fall mot sluk der det er relevant</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 mt-0.5 text-amber-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Produkter og systemer som er brukt</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 mt-0.5 text-amber-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Bilder før flis, panel eller overflate monteres</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 mt-0.5 text-amber-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Ferdig resultat</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 mt-0.5 text-amber-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Avvik, utbedringer og kundeavklaringer</li>
+          </ul>
+        </div>
+        <div class="reveal mt-5 app-card p-6">
+          <p class="text-xs font-bold uppercase tracking-widest text-faint">Eksempel på rapporter</p>
+          <div class="flex flex-wrap gap-2 mt-3">
+            <span class="pill chip-amber px-3 py-1.5 text-xs font-semibold">Legging av membran</span>
+            <span class="pill chip-amber px-3 py-1.5 text-xs font-semibold">Flislegging av bad</span>
+            <span class="pill chip-amber px-3 py-1.5 text-xs font-semibold">Utskifting av baderomspanel</span>
+            <span class="pill chip-amber px-3 py-1.5 text-xs font-semibold">Utbedring rundt sluk</span>
+            <span class="pill chip-amber px-3 py-1.5 text-xs font-semibold">Klargjøring før rørlegger / elektriker</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= EGENARBEID ======================= -->
+<section id="egenarbeid" class="relative py-20 sm:py-28 bg-white/60 border-y border-ink/5">
+  <div class="mx-auto max-w-7xl px-5 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+      <div>
+        <p class="reveal text-sm font-bold uppercase tracking-widest text-amber-text">Gjøre ting selv</p>
+        <h2 class="reveal font-display text-3xl sm:text-4xl font-extrabold mt-4 leading-tight">Dokumentasjon av egenarbeid</h2>
+        <p class="reveal text-lg text-muted mt-5 leading-relaxed">
+          Gjør du arbeid selv, bør du dokumentere hva du har gjort, når det ble gjort og hvilke produkter som er brukt. Det kan være nyttig ved senere salg, vedlikehold eller spørsmål fra ny eier.
+        </p>
+        <div class="reveal mt-7 rounded-2xl border border-amber-text/20 bg-amber-light/60 p-5">
+          <p class="text-sm font-bold text-amber-text flex items-center gap-2">
+            <svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9l-8 13.9A2 2 0 0 0 4 21h16a2 2 0 0 0 1.7-3.2l-8-13.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+            Viktig forbehold
+          </p>
+          <p class="text-sm text-amber-text/90 mt-2 leading-relaxed">Egen dokumentasjon betyr ikke at arbeid som krever fagperson kan utføres selv. Elektro, våtrom, bærende konstruksjoner og annet risikofylt arbeid kan ha egne krav.</p>
+        </div>
+        <div class="reveal mt-5 rounded-3xl bg-ink text-white p-6">
+          <p class="text-xs font-bold uppercase tracking-widest text-amber">Slik hjelper Provio</p>
+          <p class="text-white/80 mt-2 leading-relaxed">Med Provio kan du samle bilder, notater og produktinformasjon i én rapport, slik at dokumentasjonen ikke blir liggende spredt i kamerarullen.</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="reveal app-card p-7">
+          <h3 class="font-display text-lg font-bold flex items-center gap-2.5">
+            <span class="grid place-items-center h-8 w-8 rounded-xl bg-amber"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="#080A0C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+            Dette bør dokumenteres
+          </h3>
+          <ul class="mt-5 space-y-3 text-muted leading-relaxed">
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 mt-0.5 text-amber-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Hva du har gjort selv</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 mt-0.5 text-amber-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Hva fagfolk eventuelt har gjort</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 mt-0.5 text-amber-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Førbilder</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 mt-0.5 text-amber-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Bilder underveis</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 mt-0.5 text-amber-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Materialer og produkter</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 mt-0.5 text-amber-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Kvitteringer og produktdokumentasjon</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 mt-0.5 text-amber-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Dato og sted</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 mt-0.5 text-amber-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Hva som <em>ikke</em> er gjort</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 mt-0.5 text-amber-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Ferdig resultat</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= SLIK HJELPER PROVIO ======================= -->
+<section id="slik-hjelper-provio" class="relative py-20 sm:py-28">
+  <div class="mx-auto max-w-7xl px-5 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto">
+      <p class="reveal text-sm font-bold uppercase tracking-widest text-amber-text">Fra jobb til rapport</p>
+      <h2 class="reveal font-display text-3xl sm:text-5xl font-extrabold mt-4 leading-tight">Slik hjelper Provio</h2>
+      <p class="reveal text-lg text-muted mt-5 leading-relaxed">Fire steg fra oppstart til signert rapport — rett fra telefonen, mens du fortsatt er på jobben.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-14">
+      <div class="reveal app-card p-7">
+        <span class="grid place-items-center h-10 w-10 rounded-full bg-ink text-amber font-display font-extrabold">1</span>
+        <h3 class="font-display text-lg font-bold mt-5">Opprett jobb</h3>
+        <p class="text-muted mt-2 text-sm leading-relaxed">Velg kunde, adresse og legg inn en kort beskrivelse.</p>
+      </div>
+      <div class="reveal app-card p-7">
+        <span class="grid place-items-center h-10 w-10 rounded-full bg-ink text-amber font-display font-extrabold">2</span>
+        <h3 class="font-display text-lg font-bold mt-5">Dokumenter underveis</h3>
+        <p class="text-muted mt-2 text-sm leading-relaxed">Ta bilder før, under og etter arbeidet.</p>
+      </div>
+      <div class="reveal app-card p-7">
+        <span class="grid place-items-center h-10 w-10 rounded-full bg-ink text-amber font-display font-extrabold">3</span>
+        <h3 class="font-display text-lg font-bold mt-5">Beskriv arbeidet</h3>
+        <p class="text-muted mt-2 text-sm leading-relaxed">Skriv kort eller snakk inn et lydnotat. AI hjelper med å gjøre teksten ryddig.</p>
+      </div>
+      <div class="reveal app-card p-7">
+        <span class="grid place-items-center h-10 w-10 rounded-full bg-ink text-amber font-display font-extrabold">4</span>
+        <h3 class="font-display text-lg font-bold mt-5">Send rapport</h3>
+        <p class="text-muted mt-2 text-sm leading-relaxed">Signer og eksporter en profesjonell PDF med firmalogo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= FAQ ======================= -->
+<section id="faq" class="relative py-20 sm:py-28 bg-white/60 border-y border-ink/5">
+  <div class="mx-auto max-w-3xl px-5 lg:px-8">
+    <div class="text-center">
+      <p class="reveal text-sm font-bold uppercase tracking-widest text-amber-text">Ofte stilte spørsmål</p>
+      <h2 class="reveal font-display text-3xl sm:text-4xl font-extrabold mt-4">Spørsmål om dokumentasjon</h2>
+    </div>
+
+    <div class="reveal mt-12">
+      <details class="faq py-5">
+        <summary class="flex items-center justify-between gap-4 font-display font-bold text-lg">
+          Må alt arbeid dokumenteres?
+          <svg class="faq-chevron h-5 w-5 shrink-0 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="text-muted mt-3 leading-relaxed">Nei, ikke alt arbeid har formelle dokumentasjonskrav. Men god dokumentasjon med bilder, dato og beskrivelse er nyttig ved de fleste jobber — både for kunden, ved senere salg av boligen og hvis det oppstår spørsmål eller reklamasjon i etterkant. Enkelte fagområder, som elektro og søknadspliktig arbeid, har egne lovpålagte krav.</p>
+      </details>
+      <details class="faq py-5">
+        <summary class="flex items-center justify-between gap-4 font-display font-bold text-lg">
+          Erstatter Provio FDV-dokumentasjon?
+          <svg class="faq-chevron h-5 w-5 shrink-0 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="text-muted mt-3 leading-relaxed">Nei. FDV-dokumentasjon (forvaltning, drift og vedlikehold) har egne krav i byggteknisk forskrift. Provio er et praktisk verktøy for å samle bilder, beskrivelser, signatur og rapporter, og kan brukes som et supplement — ikke som erstatning for lovpålagt dokumentasjon.</p>
+      </details>
+      <details class="faq py-5">
+        <summary class="flex items-center justify-between gap-4 font-display font-bold text-lg">
+          Kan Provio brukes til elektroarbeid?
+          <svg class="faq-chevron h-5 w-5 shrink-0 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="text-muted mt-3 leading-relaxed">Ja, som et tillegg. Elektroarbeid skal utføres og dokumenteres av kvalifiserte fagfolk, og samsvarserklæring er lovpålagt. Provio kan brukes til bilder av arbeidet, beskrivelser og ryddig overlevering til kunde, men erstatter ikke samsvarserklæring eller annen påkrevd elektrodokumentasjon.</p>
+      </details>
+      <details class="faq py-5">
+        <summary class="flex items-center justify-between gap-4 font-display font-bold text-lg">
+          Hvorfor bør man ta bilder underveis?
+          <svg class="faq-chevron h-5 w-5 shrink-0 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="text-muted mt-3 leading-relaxed">Mye av det viktigste arbeidet blir skjult bak vegger, gulv og overflater. Bilder tatt underveis — før konstruksjoner lukkes — er ofte den eneste måten å vise hva som faktisk ble gjort. Sammen med dato, sted og en kort beskrivelse gir det et mye sterkere grunnlag ved spørsmål, salg eller reklamasjon.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= DISCLAIMER ======================= -->
+<section id="forbehold" class="relative py-14">
+  <div class="mx-auto max-w-3xl px-5 lg:px-8">
+    <div class="reveal rounded-2xl border border-ink/10 bg-white/70 p-6 sm:p-7">
+      <p class="text-xs font-bold uppercase tracking-widest text-faint flex items-center gap-2">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+        Generell veiledning
+      </p>
+      <p class="text-sm text-muted mt-3 leading-relaxed">
+        Informasjonen på denne siden er generell veiledning og erstatter ikke gjeldende lover, forskrifter, kontraktskrav, fagstandarder eller krav fra forsikringsselskap. Provio hjelper deg å samle og strukturere dokumentasjon, men brukeren er selv ansvarlig for at arbeidet og dokumentasjonen oppfyller relevante krav.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= SLUTT-CTA (mørk) ======================= -->
+<section id="last-ned" class="relative py-6 pb-20">
+  <div class="mx-auto max-w-7xl px-5 lg:px-8">
+    <div class="reveal relative overflow-hidden rounded-5xl bg-ink text-white px-7 py-16 sm:px-14 sm:py-20 text-center">
+      <div class="absolute -top-24 -right-16 h-96 w-96 glow-amber blur-2xl opacity-40" aria-hidden="true"></div>
+      <div class="absolute -bottom-28 -left-20 h-80 w-80 glow-amber blur-2xl opacity-20" aria-hidden="true"></div>
+      <div class="film-grain" aria-hidden="true"></div>
+      <div class="relative">
+        <h2 class="font-display text-4xl sm:text-5xl font-extrabold leading-tight">Gjør dokumentasjonen <span class="text-amber">enklere.</span></h2>
+        <p class="text-white/70 text-lg mt-5 max-w-md mx-auto leading-relaxed">Provio hjelper deg å samle bilder, notater, signatur og rapporter på ett sted.</p>
+        <div class="mt-9 flex justify-center">
+          <a href="https://apps.apple.com/no/app/provio/id6784005004?l=nb" target="_blank" rel="noopener" class="btn-store btn-amber inline-flex items-center justify-center gap-3 rounded-2xl px-7 py-4 font-bold">
+            <svg class="h-6 w-6" viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+            Last ned Provio
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= FOOTER ======================= -->
+<footer class="border-t border-ink/10 bg-white/50">
+  <div class="mx-auto max-w-7xl px-5 lg:px-8 py-14">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+      <div class="lg:col-span-2 max-w-xs">
+        <a href="index.html" class="flex items-center gap-1 font-display text-2xl font-extrabold">Provio<span class="-mt-3 ml-[1px] h-2 w-2 rounded-full bg-amber"></span></a>
+        <p class="text-muted mt-3 leading-relaxed">Dokumentér jobben med bilde og lyd, la AI skrive rapporten, signer og send — alt fra telefonen.</p>
+      </div>
+      <div>
+        <p class="text-xs font-bold uppercase tracking-widest text-faint">Produkt</p>
+        <ul class="mt-4 space-y-2.5 text-sm text-muted">
+          <li><a href="index.html#problem" class="hover:text-ink transition">Hvorfor Provio</a></li>
+          <li><a href="index.html#hvordan" class="hover:text-ink transition">Slik fungerer det</a></li>
+          <li><a href="dokumentasjonskrav.html" class="hover:text-ink transition">Hva bør dokumenteres?</a></li>
+          <li><a href="index.html#last-ned" class="hover:text-ink transition">Last ned</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-xs font-bold uppercase tracking-widest text-faint">Juridisk</p>
+        <ul class="mt-4 space-y-2.5 text-sm text-muted">
+          <li><a href="personvern.html" class="hover:text-ink transition">Personvern</a></li>
+          <li><a href="vilkar.html" class="hover:text-ink transition">Vilkår</a></li>
+          <li><a href="support.html" class="hover:text-ink transition">Support</a></li>
+          <li><a href="mailto:hei@provio.tech" class="hover:text-ink transition">Kontakt</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-12 pt-6 border-t border-ink/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-muted">
+      <p>© 2026 <span class="font-semibold text-ink">Alfa Edge AS</span> · Org.nr 928 634 671</p>
+      <p>Laget i Norge · Provio™</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     SCRIPT — reveal-animasjoner (GSAP), samme mønster som forsiden
+============================================================ -->
+<script>
+(function(){
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  gsap.registerPlugin(ScrollTrigger);
+
+  const nav = document.getElementById('nav');
+  ScrollTrigger.create({ start: 'top -60', onUpdate: self => {
+    nav.classList.toggle('shadow-lg', self.scroll() > 60);
+  }});
+
+  if (!reduce){
+    gsap.utils.toArray('.reveal').forEach((el) => {
+      gsap.to(el, {
+        opacity: 1, y: 0, duration: 0.9, ease: 'expo.out',
+        scrollTrigger: { trigger: el, start: 'top 88%' }
+      });
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
