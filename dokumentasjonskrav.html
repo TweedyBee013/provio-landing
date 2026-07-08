@@ -50,7 +50,7 @@
 
 <style>
   :root{
-    --ink:#080A0C; --amber:#FFD358; --amber-mid:#FFE58A; --amber-light:#FFF5CC;
+    --ink:#080A0C; --amber:#FFD358; --amber-mid:#FFE58A; --amber-light:#FFF5CC; --amber-text:#5C4200;
     --cream:#F3F1EC; --mist:#F3F3F3; --muted:#6B6869; --white:#FFFFFF;
   }
   html{ scroll-behavior:smooth; }
@@ -85,7 +85,7 @@
   .btn-amber:hover{ transform:translateY(-3px); box-shadow:0 0 0 1px rgba(92,66,0,.15), 0 20px 36px -8px rgba(255,211,88,.6), inset 0 1px 1px rgba(255,255,255,.8), inset 0 -3px 6px rgba(92,66,0,.12); }
   .btn-amber:active{ transform:translateY(1px); }
 
-  .app-card{ background:#fff; border:1px solid rgba(8,10,12,.07); border-radius:18px; box-shadow:0 6px 16px -8px rgba(8,10,12,.12); }
+  .app-card{ background:#fff; border:1px solid rgba(8,10,12,.07); border-radius:18px; box-shadow:0 6px 16px -8px rgba(8,10,12,.12); color:var(--ink); }
   .pill{ border-radius:999px; }
   .chip-amber{ background:var(--amber-light); color:var(--amber-text); }
 
@@ -217,7 +217,13 @@
                 <p class="text-[10px] text-muted font-semibold mt-1">Org.nr 999 999 999</p>
               </div>
               <div class="text-right">
-                <p class="text-[9px] uppercase tracking-widest text-faint font-semibold">Arbeidsrapport</p>
+                <p class="text-[9px] uppercase tracking-widest text-faint font-semibold flex items-center justify-end gap-1.5">
+                  <span class="relative flex h-1.5 w-1.5">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber opacity-75"></span>
+                    <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-amber-text"></span>
+                  </span>
+                  Arbeidsrapport
+                </p>
                 <p class="font-display font-extrabold text-sm">JP-202607-84K2</p>
               </div>
             </div>
@@ -246,7 +252,7 @@
           <div class="absolute -left-10 top-10 app-card px-4 py-3 -rotate-3">
             <div class="flex items-center gap-2.5">
               <span class="grid place-items-center h-8 w-8 rounded-full bg-amber"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="#080A0C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
-              <div><p class="text-xs font-bold leading-none">Dokumentert før lukking</p><p class="text-[10px] text-muted mt-0.5">12 bilder · membran + sluk</p></div>
+              <div><p class="text-xs font-bold leading-none text-ink">Dokumentert før lukking</p><p class="text-[10px] text-muted mt-0.5">12 bilder · membran + sluk</p></div>
             </div>
           </div>
         </div>
