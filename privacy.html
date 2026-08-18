@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Privacy Policy — Provio</title>
+<meta name="description" content="Privacy policy for Provio. How we process and protect your personal data in accordance with GDPR and Norwegian data protection law." />
+
+<link rel="alternate" hreflang="nb" href="personvern.html" />
+<link rel="alternate" hreflang="en" href="privacy.html" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink:    '#080A0C',
+          amber:  { DEFAULT: '#FFD358', light: '#FFF5CC', mid: '#FFE58A', text: '#5C4200' },
+          cream:  '#F3F1EC',
+          mist:   '#F3F3F3',
+          muted:  '#6B6869',
+          faint:  '#AEABAA',
+        },
+        fontFamily: {
+          display: ['"Inter Tight"', 'system-ui', 'sans-serif'],
+          sans:    ['Inter', 'system-ui', 'sans-serif'],
+        },
+        borderRadius: { '4xl': '2rem', '5xl': '2.5rem' },
+      }
+    }
+  }
+</script>
+
+<style>
+  html{ scroll-behavior:smooth; }
+  body{ font-family:'Inter',system-ui,sans-serif; background:#F3F1EC; color:#080A0C; -webkit-font-smoothing:antialiased; }
+  ::selection{ background:#FFD358; color:#080A0C; }
+  .font-display{ font-family:'Inter Tight',sans-serif; letter-spacing:-0.02em; }
+  .prose-p{ color:#3a3839; line-height:1.7; }
+</style>
+</head>
+
+<body>
+
+<!-- Topbar -->
+<header class="border-b border-ink/10 bg-white/60 backdrop-blur sticky top-0 z-10">
+  <div class="mx-auto max-w-3xl px-5 lg:px-8 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-1 font-display text-2xl font-extrabold">Provio<span class="-mt-3 ml-[1px] h-2 w-2 rounded-full bg-amber"></span></a>
+    <a href="index.html" class="text-sm text-muted hover:text-ink transition">← Back</a>
+  </div>
+</header>
+
+<main class="mx-auto max-w-3xl px-5 lg:px-8 py-12 lg:py-16">
+
+  <p class="text-xs font-bold uppercase tracking-widest text-faint">Legal</p>
+  <h1 class="font-display text-4xl lg:text-5xl font-extrabold mt-3">Privacy Policy</h1>
+  <p class="prose-p mt-4">Last updated: August 2026</p>
+  <p class="prose-p mt-2">This policy explains how Provio processes personal data when you use the app. The service is Norwegian and subject to the Norwegian Personal Data Act and the EU General Data Protection Regulation (GDPR).</p>
+
+  <!-- 1 -->
+  <section class="mt-12">
+    <h2 class="font-display text-xl font-extrabold">1. Data controller</h2>
+    <p class="prose-p mt-3">Alfa Edge AS (company reg. no. 928 634 671) is the data controller for your personal data.</p>
+    <p class="prose-p mt-2">Contact: <a href="mailto:hei@provio.tech" class="underline hover:text-ink">hei@provio.tech</a></p>
+  </section>
+
+  <!-- 2 -->
+  <section class="mt-10">
+    <h2 class="font-display text-xl font-extrabold">2. What information we collect</h2>
+    <p class="text-xs font-bold uppercase tracking-widest text-faint mt-4">At registration</p>
+    <ul class="prose-p mt-2 space-y-1 list-disc pl-5">
+      <li>Name and email address</li>
+      <li>Phone number (optional)</li>
+      <li>Encrypted password (we never see your password in plain text)</li>
+      <li>Company name and company phone number</li>
+    </ul>
+    <p class="text-xs font-bold uppercase tracking-widest text-faint mt-4">When using the service</p>
+    <ul class="prose-p mt-2 space-y-1 list-disc pl-5">
+      <li>Photos you take of the work</li>
+      <li>Voice recordings you make to describe the work (see section 4)</li>
+      <li>Descriptions, report text and job-related information you enter</li>
+      <li>Customer data you register (name, address, email and phone)</li>
+    </ul>
+  </section>
+
+  <!-- 3 -->
+  <section class="mt-10">
+    <h2 class="font-display text-xl font-extrabold">3. Data storage</h2>
+    <p class="prose-p mt-3">Your data — jobs, customers, documentation, reports, photos, signatures and company logo — is stored on your device and synced to our cloud service (Cloudflare, EU/EEA) when you are signed in. This gives you access to your data across multiple devices. All transfers are encrypted (TLS/HTTPS).</p>
+    <p class="prose-p mt-3">Audio is processed temporarily (see section 4) and is never stored permanently — neither by us nor on the device after the text has been extracted.</p>
+  </section>
+
+  <!-- 4 -->
+  <section class="mt-10">
+    <h2 class="font-display text-xl font-extrabold">4. AI processing of audio and text</h2>
+    <p class="prose-p mt-3">When you use the voice note feature, the audio recording is sent via our service (Cloudflare Worker) to OpenAI to be converted into text (Whisper). The text may then be cleaned up/structured by a language model (GPT-4o / GPT-4o-mini). Only the text is retained — the audio clip itself is not stored.</p>
+    <p class="prose-p mt-3">Your photos are not sent to AI. All AI processing only happens when you initiate the action yourself.</p>
+    <p class="prose-p mt-3">OpenAI processes data as a data processor. We have confirmed that "Sharing of model feedback" is disabled on our account — submitted content is not used for model training.</p>
+  </section>
+
+  <!-- 5 -->
+  <section class="mt-10">
+    <h2 class="font-display text-xl font-extrabold">5. Third parties</h2>
+    <p class="prose-p mt-3">We share data with the following providers to deliver the service:</p>
+    <div class="mt-4 border border-ink/10 rounded-2xl overflow-hidden bg-white/50">
+      <div class="flex justify-between gap-4 px-4 py-3 border-b border-ink/10">
+        <span class="font-semibold">Cloudflare (Workers + R2)</span>
+        <span class="text-muted text-right text-sm">Storage and synchronization of data and media across devices, and relaying of AI requests · EU/EEA</span>
+      </div>
+      <div class="flex justify-between gap-4 px-4 py-3 border-b border-ink/10">
+        <span class="font-semibold">OpenAI</span>
+        <span class="text-muted text-right text-sm">Speech-to-text and report text · USA (SCC)</span>
+      </div>
+      <div class="flex justify-between gap-4 px-4 py-3 border-b border-ink/10">
+        <span class="font-semibold">OpenStreetMap (Nominatim)</span>
+        <span class="text-muted text-right text-sm">Geocoding of addresses into map coordinates · EU/UK</span>
+      </div>
+      <div class="flex justify-between gap-4 px-4 py-3 border-b border-ink/10">
+        <span class="font-semibold">Kartverket (Geonorge)</span>
+        <span class="text-muted text-right text-sm">Lookup of Norwegian addresses in the official registry · Norway</span>
+      </div>
+      <div class="flex justify-between gap-4 px-4 py-3">
+        <span class="font-semibold">Brønnøysundregistrene</span>
+        <span class="text-muted text-right text-sm">Lookup of company registration number · Norway</span>
+      </div>
+    </div>
+    <p class="prose-p mt-4">All providers outside the EU/EEA are subject to Standard Contractual Clauses (SCC) in accordance with GDPR Article 46.</p>
+  </section>
+
+  <!-- 6 -->
+  <section class="mt-10">
+    <h2 class="font-display text-xl font-extrabold">6. Legal basis (GDPR Art. 6)</h2>
+    <ul class="prose-p mt-3 space-y-2 list-disc pl-5">
+      <li><strong>Contract:</strong> delivery of the service, user authentication and customer support</li>
+      <li><strong>Legal obligation:</strong> statutory documentation requirements</li>
+      <li><strong>Legitimate interest:</strong> security and troubleshooting</li>
+    </ul>
+  </section>
+
+  <!-- 7 -->
+  <section class="mt-10">
+    <h2 class="font-display text-xl font-extrabold">7. Retention</h2>
+    <div class="mt-4 border border-ink/10 rounded-2xl overflow-hidden bg-white/50">
+      <div class="flex justify-between gap-4 px-4 py-3 border-b border-ink/10">
+        <span class="font-semibold">Account and profile data</span><span class="text-muted text-right text-sm">Until the account is deleted</span>
+      </div>
+      <div class="flex justify-between gap-4 px-4 py-3 border-b border-ink/10">
+        <span class="font-semibold">Jobs, customers and reports</span><span class="text-muted text-right text-sm">Until you delete them (deleted on all devices)</span>
+      </div>
+      <div class="flex justify-between gap-4 px-4 py-3 border-b border-ink/10">
+        <span class="font-semibold">Photos and signatures</span><span class="text-muted text-right text-sm">Until you delete them (deleted on all devices)</span>
+      </div>
+      <div class="flex justify-between gap-4 px-4 py-3">
+        <span class="font-semibold">Voice recordings</span><span class="text-muted text-right text-sm">Deleted after transcription – never stored in the cloud</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 -->
+  <section class="mt-10">
+    <h2 class="font-display text-xl font-extrabold">8. Your rights</h2>
+    <p class="prose-p mt-3">Under the GDPR you have the right to:</p>
+    <ul class="prose-p mt-3 space-y-2 list-disc pl-5">
+      <li><strong>Access</strong> – an overview of the data we hold about you</li>
+      <li><strong>Rectification</strong> – to correct inaccurate data</li>
+      <li><strong>Erasure</strong> – to request that your data be deleted. In the app you can delete all data under Account → Danger zone.</li>
+      <li><strong>Data portability</strong> – to receive your data in a machine-readable format</li>
+      <li><strong>Objection</strong> – to object to processing based on legitimate interest</li>
+    </ul>
+    <p class="prose-p mt-3">We respond to requests within 30 days. Send your request to <a href="mailto:hei@provio.tech" class="underline hover:text-ink">hei@provio.tech</a>.</p>
+  </section>
+
+  <!-- 9 -->
+  <section class="mt-10">
+    <h2 class="font-display text-xl font-extrabold">9. Security</h2>
+    <p class="prose-p mt-3">We protect your data with:</p>
+    <ul class="prose-p mt-3 space-y-2 list-disc pl-5">
+      <li>Encrypted transfer (TLS/HTTPS) for all communication</li>
+      <li>Passwords are never stored in plain text — only as a salted hash</li>
+      <li>Sign-in tokens are stored securely in the device keychain</li>
+    </ul>
+    <p class="prose-p mt-3">In the event of a security breach that poses a risk to your rights, we will notify the Norwegian Data Protection Authority (Datatilsynet) within 72 hours (GDPR Article 33) and affected users without undue delay.</p>
+  </section>
+
+  <!-- 10 -->
+  <section class="mt-10">
+    <h2 class="font-display text-xl font-extrabold">10. Right to complain</h2>
+    <p class="prose-p mt-3">You have the right to lodge a complaint with <strong>Datatilsynet</strong> (the Norwegian Data Protection Authority, datatilsynet.no) if you believe we process your personal data in violation of applicable law.</p>
+  </section>
+
+  <!-- 11 -->
+  <section class="mt-10">
+    <h2 class="font-display text-xl font-extrabold">11. Changes</h2>
+    <p class="prose-p mt-3">Material changes will be announced by email with at least 30 days' notice. Continued use after they take effect is considered acceptance.</p>
+  </section>
+
+  <div class="mt-12">
+    <a href="mailto:hei@provio.tech" class="inline-flex items-center justify-center rounded-full bg-ink text-white font-semibold px-6 py-3 hover:opacity-90 transition">Contact us regarding privacy</a>
+  </div>
+
+</main>
+
+<footer class="border-t border-ink/10 bg-white/50">
+  <div class="mx-auto max-w-3xl px-5 lg:px-8 py-8 text-sm text-muted flex flex-col sm:flex-row items-center justify-between gap-3">
+    <p>© 2026 <span class="font-semibold text-ink">Alfa Edge AS</span> · Org.nr 928 634 671</p>
+    <p>Made in Norway · Provio™</p>
+  </div>
+</footer>
+
+</body>
+</html>
