@@ -100,6 +100,13 @@
   details.faq[open] .faq-chevron{ transform:rotate(180deg); }
   .faq-chevron{ transition:transform .25s ease; }
 
+  /* ---------- Mobilmeny ---------- */
+  #mobile-menu{ visibility:hidden; opacity:0; pointer-events:none; transition:opacity .22s ease, visibility .22s ease; }
+  #mobile-menu.is-open{ visibility:visible; opacity:1; pointer-events:auto; }
+  #mobile-menu .mobile-menu-panel{ transform:translateX(1.5rem); transition:transform .3s cubic-bezier(.25,1,.5,1); }
+  #mobile-menu.is-open .mobile-menu-panel{ transform:translateX(0); }
+  body.menu-open{ overflow:hidden; }
+
   /* Ankere skal ikke gjemmes bak fast navbar */
   section[id]{ scroll-margin-top:88px; }
 
@@ -165,13 +172,41 @@
         <a href="index.html#hvordan" class="hover:text-ink transition">Slik fungerer det</a>
         <a href="#fagomrader" class="text-ink font-semibold">Dokumentasjonskrav</a>
       </nav>
-      <a href="https://apps.apple.com/no/app/provio/id6784005004?l=nb" target="_blank" rel="noopener" class="btn-store btn-dark inline-flex items-center gap-2 rounded-full px-4 sm:px-5 py-2.5 text-sm font-semibold">
+      <a href="https://apps.apple.com/no/app/provio/id6784005004?l=nb" target="_blank" rel="noopener" class="btn-store btn-dark hidden md:inline-flex items-center gap-2 rounded-full px-4 sm:px-5 py-2.5 text-sm font-semibold">
         Last ned
         <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
+      <button id="menu-toggle" class="grid h-11 w-11 place-items-center rounded-full border border-ink/10 bg-white text-ink shadow-sm transition hover:bg-cream focus:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 md:hidden" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Åpne meny">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
     </div>
   </div>
 </header>
+
+<!-- ======================= MOBILMENY ======================= -->
+<div id="mobile-menu" class="fixed inset-0 z-[60] md:hidden" aria-hidden="true">
+  <button class="absolute inset-0 h-full w-full bg-ink/30 backdrop-blur-[2px]" type="button" data-menu-close aria-label="Lukk meny"></button>
+  <section class="mobile-menu-panel absolute inset-y-0 right-0 flex w-[min(22rem,calc(100%-1.25rem))] flex-col bg-white px-6 pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-[max(1.25rem,env(safe-area-inset-top))] shadow-2xl" role="dialog" aria-modal="true" aria-labelledby="mobile-menu-title">
+    <div class="flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-1 font-display text-2xl font-extrabold tracking-tight" data-menu-link>
+        Provio<span class="-mt-3 ml-[1px] h-2 w-2 rounded-full bg-amber"></span>
+      </a>
+      <button class="grid h-11 w-11 place-items-center rounded-full border border-ink/10 text-ink transition hover:bg-cream focus:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2" type="button" data-menu-close aria-label="Lukk meny">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <p id="mobile-menu-title" class="mt-12 text-xs font-bold uppercase tracking-widest text-faint">Navigasjon</p>
+    <nav class="mt-4 flex flex-col border-t border-ink/10" aria-label="Mobilnavigasjon">
+      <a href="index.html#problem" class="border-b border-ink/10 py-4 text-lg font-semibold transition hover:text-amber-text" data-menu-link>Hvorfor Provio</a>
+      <a href="index.html#hvordan" class="border-b border-ink/10 py-4 text-lg font-semibold transition hover:text-amber-text" data-menu-link>Slik fungerer det</a>
+      <a href="#fagomrader" class="border-b border-ink/10 py-4 text-lg font-semibold text-ink transition hover:text-amber-text" data-menu-link>Dokumentasjonskrav</a>
+    </nav>
+    <a href="https://apps.apple.com/no/app/provio/id6784005004?l=nb" target="_blank" rel="noopener" class="btn-store btn-dark mt-auto inline-flex min-h-14 items-center justify-center gap-2 rounded-2xl px-5 py-4 text-base font-semibold" data-menu-link>
+      Last ned Provio
+      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </section>
+</div>
 
 <!-- ======================= HERO (mørk) ======================= -->
 <section id="top" class="relative overflow-hidden bg-ink text-white pt-36 pb-20 sm:pt-44 lg:pt-48">
@@ -505,7 +540,7 @@
         </div>
         <div class="reveal mt-5 rounded-3xl bg-ink text-white p-6">
           <p class="text-xs font-bold uppercase tracking-widest text-amber">Slik hjelper Provio</p>
-          <p class="text-white/80 mt-2 leading-relaxed">Dokumenter forarbeid, farger og strøk med bilder og notater, og gi kunden en ryddig rapport med fargekoder for senere.</p>
+          <p class="text-white/80 mt-2 leading-relaxed">Dokumenter forarbeid, farger og strøk med bilder og notater, og gi kunden en ryddig rapport med fargekoder som kan brukes senere.</p>
         </div>
       </div>
 
@@ -612,7 +647,7 @@
             <svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9l-8 13.9A2 2 0 0 0 4 21h16a2 2 0 0 0 1.7-3.2l-8-13.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>
             Viktig forbehold
           </p>
-          <p class="text-sm text-amber-text/90 mt-2 leading-relaxed">Egen dokumentasjon betyr ikke at arbeid som krever fagperson kan utføres selv. Elektro, våtrom, bærende konstruksjoner og annet risikofylt arbeid kan ha egne krav.</p>
+          <p class="text-sm text-amber-text/90 mt-2 leading-relaxed">Egen dokumentasjon betyr ikke at arbeid som krever fagperson, kan utføres selv. Elektro, våtrom, bærende konstruksjoner og annet risikofylt arbeid kan ha egne krav.</p>
         </div>
         <div class="reveal mt-5 rounded-3xl bg-ink text-white p-6">
           <p class="text-xs font-bold uppercase tracking-widest text-amber">Slik hjelper Provio</p>
@@ -666,7 +701,7 @@
       <div class="reveal app-card p-7">
         <span class="grid place-items-center h-10 w-10 rounded-full bg-ink text-amber font-display font-extrabold">3</span>
         <h3 class="font-display text-lg font-bold mt-5">Beskriv arbeidet</h3>
-        <p class="text-muted mt-2 text-sm leading-relaxed">Skriv kort eller snakk inn et lydnotat. AI hjelper med å gjøre teksten ryddig.</p>
+        <p class="text-muted mt-2 text-sm leading-relaxed">Skriv kort eller snakk inn et lydnotat. AI hjelper deg med å gjøre teksten ryddig.</p>
       </div>
       <div class="reveal app-card p-7">
         <span class="grid place-items-center h-10 w-10 rounded-full bg-ink text-amber font-display font-extrabold">4</span>
@@ -801,6 +836,35 @@
   ScrollTrigger.create({ start: 'top -60', onUpdate: self => {
     nav.classList.toggle('shadow-lg', self.scroll() > 60);
   }});
+
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuCloseButtons = mobileMenu ? mobileMenu.querySelectorAll('[data-menu-close]') : [];
+  const menuLinks = mobileMenu ? mobileMenu.querySelectorAll('[data-menu-link]') : [];
+  let lastFocused = null;
+  function closeMenu(){
+    if (!mobileMenu || !menuToggle) return;
+    mobileMenu.classList.remove('is-open');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.setAttribute('aria-label', 'Åpne meny');
+    document.body.classList.remove('menu-open');
+    if (lastFocused) lastFocused.focus();
+  }
+  function openMenu(){
+    if (!mobileMenu || !menuToggle) return;
+    lastFocused = document.activeElement;
+    mobileMenu.classList.add('is-open');
+    mobileMenu.setAttribute('aria-hidden', 'false');
+    menuToggle.setAttribute('aria-expanded', 'true');
+    menuToggle.setAttribute('aria-label', 'Lukk meny');
+    document.body.classList.add('menu-open');
+    mobileMenu.querySelector('[data-menu-close]')?.focus();
+  }
+  menuToggle?.addEventListener('click', () => mobileMenu?.classList.contains('is-open') ? closeMenu() : openMenu());
+  menuCloseButtons.forEach(button => button.addEventListener('click', closeMenu));
+  menuLinks.forEach(link => link.addEventListener('click', closeMenu));
+  window.addEventListener('keydown', event => { if (event.key === 'Escape' && mobileMenu?.classList.contains('is-open')) closeMenu(); });
 
   if (!reduce){
     gsap.utils.toArray('.reveal').forEach((el) => {
